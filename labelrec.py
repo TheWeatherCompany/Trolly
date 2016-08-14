@@ -5,6 +5,7 @@
 
 import trolly
 import sys
+import time
 
 # Trello API Key and user auth token 
 API_KEY		       = sys.argv[1]
@@ -17,12 +18,16 @@ tc = trolly.client.Client(API_KEY, TRLAB_TOKEN)
 # Template board ID and organization ID  
 TEMPLATE_BOARD_ID  = '565c7388e9437c96e0febd3d'
 ORG_ID             = '54088113bc859376bccb0ce5'
+TEMPLATE_CARD_ID   = '574d8df23a213308f26a3c2d'
 
 org = trolly.Organisation(tc, ORG_ID)
 allBoards = org.get_boards()
 
 templateBoard = tc.get_board(TEMPLATE_BOARD_ID)
 templateLabels = templateBoard.get_labels()
+templateCard = templateBoard.get_card(TEMPLATE_CARD_ID)
+templateBoardList = templateBoard.get_lists()[0]
+
 allowedLabelNames = []
 allowedLabels = []
 debugOnce = 0
@@ -88,16 +93,23 @@ print '='*150
 for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
+        boardListZero = board.get_lists()[0]
+        templateCard.update_card({'idList':boardListZero})
+        time.sleep(10)
+        templateCard.update_card({'idList':templateBoardList})
+        time.sleep(10)
         for label in boardLabels:
-            foundLabel = False
+            #foundLabel = False
             for tempLabel in allowedLabels:
                 if tempLabel.name == label.name:
                     if tempLabel.color != label.color:
                         print "-- Removing " + label.name + " from " + board.name + " for color mismatch"
                         label.remove_label()
-                        print "++ Adding " + label.name + " with color '" + tempLabel.color + "' to board '" + board.name + "'"
-                        board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
-                    foundLabel = True
-                if foundLabel is False:
-                    print "++ Label with name '" + tempLabel.name + "' not found on board '" + board.name + "', adding to board"
-                    board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
+                        #print "++ Adding " + label.name + " with color '" + tempLabel.color + "' to board '" + board.name + "'"
+                        #board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
+                    #foundLabel = True
+                #if foundLabel is False:
+                #    print "++ Label with name '" + tempLabel.name + "' not found on board '" + board.name + "', adding to board"
+                #    board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
+
+
