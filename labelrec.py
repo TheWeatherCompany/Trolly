@@ -93,9 +93,15 @@ print '='*150
 for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
-        templateCard.update_card({'idList':board.id})
+        boardLists = board.get_lists()
+        print ''
+        print '+'*50
+        print 'DEBUG'
+        print boardLists[0].id
+        print '+'*50
+        templateCard.update_card({'idList':boardLists[0].id,'idBoard':board.id})
         time.sleep(10)
-        templateCard.update_card({'idList':TEMPLATE_BOARD_ID})
+        templateCard.update_card({'idList':templateBoardLists[0].id,'idBoard':TEMPLATE_BOARD_ID})
         time.sleep(10)
         for label in boardLabels:
             #foundLabel = False
@@ -110,5 +116,4 @@ for board in allBoards:
                 #if foundLabel is False:
                 #    print "++ Label with name '" + tempLabel.name + "' not found on board '" + board.name + "', adding to board"
                 #    board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
-
 
