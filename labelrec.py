@@ -95,9 +95,9 @@ for board in allBoards:
         boardLabels = board.get_labels()
         boardLists = board.get_lists()
         templateCard.update_card({'idList':boardLists[0].id,'idBoard':board.id})
-        time.sleep(5)
+        time.sleep(3)
         templateCard.update_card({'idList':templateBoardLists[0].id,'idBoard':TEMPLATE_BOARD_ID})
-        time.sleep(5)
+        time.sleep(3)
         for label in boardLabels:
             #foundLabel = False
             for tempLabel in allowedLabels:
