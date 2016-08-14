@@ -12,6 +12,7 @@ class Label(trelloobject.TrelloObject):
 
         self.id = label_id
         self.name = name
+        self.color = color
 
         self.base_uri = '/labels/' + self.id
 
@@ -35,6 +36,12 @@ class Label(trelloobject.TrelloObject):
         )
 
     def remove_label(self):
+        return self.fetch_json(
+            uri_path=self.base_uri,
+            http_method='DELETE'
+        )
+    
+    def add_label(self, board):
         return self.fetch_json(
             uri_path=self.base_uri,
             http_method='DELETE'
