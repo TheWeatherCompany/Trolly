@@ -134,6 +134,7 @@ class Client(object):
             trello_client=self,
             label_id=label_json['id'],
             name=label_json['name'],
+            color=label_json['color'],
             data=label_json,
         )
 
