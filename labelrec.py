@@ -93,15 +93,9 @@ print '='*150
 for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
-        boardLists = board.get_lists()
-        print ''
-        print '+'*50
-        print 'DEBUG'
-        print boardLists[0].id
-        print '+'*50
-        templateCard.update_card({'idList':boardLists[0].id})
+        templateCard.update_card({'idList':board.id})
         time.sleep(10)
-        templateCard.update_card({'idList':templateBoardLists[0].id})
+        templateCard.update_card({'idList':TEMPLATE_BOARD_ID})
         time.sleep(10)
         for label in boardLabels:
             #foundLabel = False
