@@ -83,7 +83,7 @@ print badLabels
 
 for label in allLabels:
    if label.name in badLabels:
-     print "Removing", label.name
+     print "Removing label with name: '" + label.name + "'"
      label.remove_label()
 
 print ''
