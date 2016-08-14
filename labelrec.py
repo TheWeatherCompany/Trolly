@@ -31,7 +31,7 @@ for label in templateLabels:
     if debugOnce is 0:
         print '+'*25
         print "DEBUG"
-        for k,v in label:
+        for k,v in label.items():
             print k + " : " + v
         print '+'*25
         debugOnce = 1
