@@ -1,5 +1,8 @@
 # Uses Trolly - https://github.com/TheWeatherCompany/Trolly
 
+# @ckelner - 2016/08/14 - I really hacked this up after Annika did the init
+# so it is a big fugly and waaay not DRY.  Quick Sunday hacks.  Love.
+
 import trolly
 import sys
 
@@ -20,11 +23,20 @@ allBoards = org.get_boards()
 templateBoard = tc.get_board(TEMPLATE_BOARD_ID)
 templateLabels = templateBoard.get_labels()
 allowedLabelNames = []
+allowedLabels = []
+debugOnce = 0
 print '='*50
-print 'These are the allowed labels:'
+print 'These are the allowed labels names:'
 for label in templateLabels:
+    if debugOnce is 0:
+        print '+'*25
+        print "DEBUG"
+        print label
+        print '+'*25
+        debugOnce = 1
     print label.id, label.name
     allowedLabelNames.append(label.name)
+    allowedLabels(label)
 
 # print allowedLabelNames
 
@@ -37,18 +49,18 @@ for board in allBoards:
 
 allLabelNames = []
 print '='*50
-print "These are ALL labels"
+print "These are ALL label names"
 for label in allLabels:
     print label.id, label.name
     allLabelNames.append(label.name)
 
 print '='*50
-print 'These are the common labels:'
+print 'These are the common label names:'
 commonLabels = set(allowedLabelNames).intersection(allLabelNames)
 print commonLabels
 
 print '='*50
-print 'These are the labels that need to be deleted:'
+print 'These are the labels based on name that need to be deleted:'
 badLabels = list(set(allLabelNames) - set(allowedLabelNames))
 print badLabels
 
@@ -59,4 +71,7 @@ for label in allLabels:
 
 #for board in allBoards:
 #    if !board.closed:
-        
+#        boardLabels = board.get_labels()
+#        for label in boardLabels:
+#            for tempLabel in allowedLabels:
+#                if
