@@ -94,6 +94,11 @@ for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
         boardLists = board.get_lists()
+        print ''
+        print '+'*50
+        print 'DEBUG'
+        print boardLists[0].id
+        print '+'*50
         templateCard.update_card({'idList':boardLists[0].id})
         time.sleep(10)
         templateCard.update_card({'idList':templateBoardLists[0].id})
