@@ -81,6 +81,10 @@ for label in allLabels:
      print "Removing", label.name
      label.remove_label()
 
+print ''
+print '='*150
+print 'Reconciling labels for color and name across all boards:'
+print '='*150
 for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
