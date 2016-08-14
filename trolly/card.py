@@ -17,7 +17,6 @@ class Card(trelloobject.TrelloObject):
         self.id = card_id
         self.name = name
 
-        self.main_uri = self.base_uri + "/cards"
         self.base_uri = '/cards/' + self.id
 
     def get_card_information(self, query_params=None):
@@ -91,15 +90,6 @@ class Card(trelloobject.TrelloObject):
         card_json = self.fetch_json(
             uri_path=self.base_uri,
             http_method='PUT',
-            query_params=query_params or {}
-        )
-
-        return self.create_card(card_json)
-        
-    def create_card(self, query_params=None):
-        card_json = self.fetch_json(
-            uri_path=self.main_uri,
-            http_method='POST',
             query_params=query_params or {}
         )
 
