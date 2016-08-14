@@ -89,9 +89,11 @@ for board in allBoards:
             for tempLabel in allowedLabels:
                 if tempLabel.name == label.name:
                     if tempLabel.color != label.color:
-                        print "Removing " + label.name + " from " + board.name + " for color mismatch"
-                        #label.remove_label()
-                        #board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
+                        print "-- Removing " + label.name + " from " + board.name + " for color mismatch"
+                        label.remove_label()
+                        print "++ Adding " + label.name + " with color '" + tempLabel.color + "' to board '" + board.name + "'"
+                        board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
                     foundLabel = True
-                if foundLabel:
-                    print "Label with name '" + tempLabel.name + "' not found, adding to board"
+                if foundLabel is False:
+                    print "++ Label with name '" + tempLabel.name + "' not found on board '" + board.name + "', adding to board"
+                    board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
