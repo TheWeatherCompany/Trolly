@@ -94,9 +94,9 @@ for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
         boardListZero = board.get_lists()[0]
-        templateCard.update_card({'idList':boardListZero})
+        templateCard.update_card({'idList':boardListZero.id})
         time.sleep(10)
-        templateCard.update_card({'idList':templateBoardList})
+        templateCard.update_card({'idList':templateBoardList.id})
         time.sleep(10)
         for label in boardLabels:
             #foundLabel = False
