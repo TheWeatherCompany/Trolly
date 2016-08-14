@@ -31,12 +31,13 @@ for label in templateLabels:
     if debugOnce is 0:
         print '+'*25
         print "DEBUG"
-        print label
+        for k,v in label:
+            print k + " : " + v
         print '+'*25
         debugOnce = 1
     print label.id, label.name
     allowedLabelNames.append(label.name)
-    allowedLabels(label)
+    allowedLabels.append(label)
 
 # print allowedLabelNames
 
