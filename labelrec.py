@@ -9,7 +9,8 @@ import sys
 # Trello API Key and user auth token 
 API_KEY		         = sys.argv[1]
 TRLAB_TOKEN        = sys.argv[2]
-print 'API key is %s, token is %s' % (API_KEY, TRLAB_TOKEN)
+#print 'API key is %s, token is %s' % (API_KEY, TRLAB_TOKEN)
+print ''
 
 tc = trolly.client.Client(API_KEY, TRLAB_TOKEN)
 
@@ -25,8 +26,6 @@ templateLabels = templateBoard.get_labels()
 allowedLabelNames = []
 allowedLabels = []
 debugOnce = 0
-print '='*50
-print 'These are the allowed labels names:'
 for label in templateLabels:
     if debugOnce is 0:
         print '+'*25
@@ -36,6 +35,10 @@ for label in templateLabels:
         print label.id
         print '+'*25
         debugOnce = 1
+        print ''
+        print '='*50
+        print 'These are the allowed labels names:'
+        print '='*50
     print label.name
     allowedLabelNames.append(label.name)
     allowedLabels.append(label)
@@ -50,19 +53,25 @@ for board in allBoards:
     allLabels += board.get_labels()
 
 allLabelNames = []
+print ''
 print '='*50
 print "These are ALL label names"
+print '='*50
 for label in allLabels:
     print label.id, label.name
     allLabelNames.append(label.name)
 
+print ''
 print '='*50
 print 'These are the common label names:'
+print '='*50
 commonLabels = set(allowedLabelNames).intersection(allLabelNames)
 print commonLabels
 
+print ''
 print '='*50
 print 'These are the labels based on name that need to be deleted:'
+print '='*50
 badLabels = list(set(allLabelNames) - set(allowedLabelNames))
 print badLabels
 
