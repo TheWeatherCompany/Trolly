@@ -88,21 +88,16 @@ for label in allLabels:
 
 print ''
 print '='*150
-print 'Reconciling labels for color and name across all boards:'
+print 'Reconciling labels for color and name across all boards -- this can take awhile, moves card with labels to each board:'
 print '='*150
 for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
         boardLists = board.get_lists()
-        print ''
-        print '+'*50
-        print 'DEBUG'
-        print boardLists[0].id
-        print '+'*50
         templateCard.update_card({'idList':boardLists[0].id,'idBoard':board.id})
-        time.sleep(10)
+        time.sleep(5)
         templateCard.update_card({'idList':templateBoardLists[0].id,'idBoard':TEMPLATE_BOARD_ID})
-        time.sleep(10)
+        time.sleep(5)
         for label in boardLabels:
             #foundLabel = False
             for tempLabel in allowedLabels:
