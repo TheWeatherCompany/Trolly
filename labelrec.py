@@ -20,6 +20,7 @@ allBoards = org.get_boards()
 templateBoard = tc.get_board(TEMPLATE_BOARD_ID)
 templateLabels = templateBoard.get_labels()
 allowedLabelNames = []
+print '='*50
 print 'These are the allowed labels:'
 for label in templateLabels:
     print label.id, label.name
@@ -35,15 +36,18 @@ for board in allBoards:
     allLabels += board.get_labels()
 
 allLabelNames = []
+print '='*50
 print "These are ALL labels"
 for label in allLabels:
     print label.id, label.name
     allLabelNames.append(label.name)
 
+print '='*50
 print 'These are the common labels:'
 commonLabels = set(allowedLabelNames).intersection(allLabelNames)
 print commonLabels
 
+print '='*50
 print 'These are the labels that need to be deleted:'
 badLabels = list(set(allLabelNames) - set(allowedLabelNames))
 print badLabels
@@ -52,3 +56,7 @@ for label in allLabels:
    if label.name in badLabels:
      print "Removing", label.name
      label.remove_label()
+
+#for board in allBoards:
+#    if !board.closed:
+        
