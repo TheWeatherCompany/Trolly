@@ -26,7 +26,7 @@ allBoards = org.get_boards()
 templateBoard = tc.get_board(TEMPLATE_BOARD_ID)
 templateLabels = templateBoard.get_labels()
 templateCard = templateBoard.get_card(TEMPLATE_CARD_ID)
-templateBoardList = templateBoard.get_lists()[0]
+templateBoardLists = templateBoard.get_lists()
 
 allowedLabelNames = []
 allowedLabels = []
@@ -93,10 +93,10 @@ print '='*150
 for board in allBoards:
     if board.closed is False:
         boardLabels = board.get_labels()
-        boardListZero = board.get_lists()[0]
-        templateCard.update_card({'idList':boardListZero.id})
+        boardLists = board.get_lists()
+        templateCard.update_card({'idList':boardLists[0].id})
         time.sleep(10)
-        templateCard.update_card({'idList':templateBoardList.id})
+        templateCard.update_card({'idList':templateBoardLists[0].id})
         time.sleep(10)
         for label in boardLabels:
             #foundLabel = False
