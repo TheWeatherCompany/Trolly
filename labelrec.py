@@ -7,7 +7,7 @@ import trolly
 import sys
 
 # Trello API Key and user auth token 
-API_KEY		         = sys.argv[1]
+API_KEY		       = sys.argv[1]
 TRLAB_TOKEN        = sys.argv[2]
 #print 'API key is %s, token is %s' % (API_KEY, TRLAB_TOKEN)
 print ''
@@ -28,17 +28,18 @@ allowedLabels = []
 debugOnce = 0
 for label in templateLabels:
     if debugOnce is 0:
-        print '+'*25
+        print '+'*55
         print "DEBUG"
+        print '+'*55
         print label.name
         print label.color
         print label.id
-        print '+'*25
+        print '+'*55
         debugOnce = 1
         print ''
-        print '='*50
+        print '='*150
         print 'These are the allowed labels names:'
-        print '='*50
+        print '='*150
     print label.name
     allowedLabelNames.append(label.name)
     allowedLabels.append(label)
@@ -54,24 +55,24 @@ for board in allBoards:
 
 allLabelNames = []
 print ''
-print '='*50
+print '='*150
 print "These are ALL label names"
-print '='*50
+print '='*150
 for label in allLabels:
     print label.id, label.name
     allLabelNames.append(label.name)
 
 print ''
-print '='*50
+print '='*150
 print 'These are the common label names:'
-print '='*50
+print '='*150
 commonLabels = set(allowedLabelNames).intersection(allLabelNames)
 print commonLabels
 
 print ''
-print '='*50
+print '='*150
 print 'These are the labels based on name that need to be deleted:'
-print '='*50
+print '='*150
 badLabels = list(set(allLabelNames) - set(allowedLabelNames))
 print badLabels
 
@@ -80,9 +81,17 @@ for label in allLabels:
      print "Removing", label.name
      label.remove_label()
 
-#for board in allBoards:
-#    if !board.closed:
-#        boardLabels = board.get_labels()
-#        for label in boardLabels:
-#            for tempLabel in allowedLabels:
-#                if
+for board in allBoards:
+    if !board.closed:
+        boardLabels = board.get_labels()
+        for label in boardLabels:
+            foundLabel = False
+            for tempLabel in allowedLabels:
+                if tempLabel.name == label.name:
+                    if tempLabel.color != label.color:
+                        print "Removing " + label.name + " from " + board.name + " for color mismatch"
+                        #label.remove_label()
+                        #board.add_label({'name': tempLabel.name, 'color': tempLabel.color})
+                    foundLabel = True
+                if foundLabel:
+                    print "Label with name '" + tempLabel.name + "' not found, adding to board"
