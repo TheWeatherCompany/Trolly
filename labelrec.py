@@ -82,7 +82,7 @@ for label in allLabels:
      label.remove_label()
 
 for board in allBoards:
-    if !board.closed:
+    if board.closed is False:
         boardLabels = board.get_labels()
         for label in boardLabels:
             foundLabel = False
